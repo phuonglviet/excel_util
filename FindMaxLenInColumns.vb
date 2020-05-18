@@ -5,8 +5,8 @@ Sub FindMaxLenInColumns()
     Dim rActiveSheet As Worksheet
     'Dim c As range
     Dim Msg As String
-    Dim sRange As range
-    Dim wRange As range
+    Dim sRange As Range
+    Dim wRange As Range
     Dim maxLength As Long
     Dim sAddress As String
     Dim lenOfCell As Long
@@ -18,12 +18,12 @@ Sub FindMaxLenInColumns()
     ' Setting
     resltRow = 1 'write result at row number
     Set rActiveSheet = ActiveSheet
-    Set sRange = rActiveSheet.range("B4:AA24") 'Range to find
+    Set sRange = rActiveSheet.Range("A4:AP1025") 'Range to find
     
     'Find ma len each column in range
-    For Each rng In sRange.Columns
+    For Each Rng In sRange.Columns
         maxLength = 0
-        For Each ce In rng.Cells
+        For Each ce In Rng.Cells
         
             lenOfCell = Len(ce.Value)
             
@@ -33,17 +33,19 @@ Sub FindMaxLenInColumns()
                 'sAddress = Cell.Address
             End If
             'Set lenOfCell = Len(Cell.Value)
-        
+            If countCol = 0 Then
+                countRow = countRow + 1
+            End If
         Next ce
         
         ' write result
         ' Cells(resltRow, ce.Column).Value = maxLength
         Cells(resltRow, resltCol).Value = maxLength
         countCol = countCol + 1
-        countRow = countRow + 1
-    Next rng
+    Next Rng
     
     MsgBox "Done! Columns:" & countCol & " , Rows:" & countRow & " has done."
    
 End Sub
+
 
